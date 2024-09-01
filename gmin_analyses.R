@@ -18,26 +18,26 @@ db = read.table("1_data/Gmin_C_distishoclata_27_abr_2024.csv",
                   )
 
 ### processing common info
-db$atm = mean(db[["Atmospheric_pressure"]], na.rm = T)
+db$atm = mean(db[["atmospheric_pressure"]], na.rm = T)
 
 ## sp name
-sp = unique(db$Specie)
-individuals = unique(db$Individual)
+sp = unique(db$specie)
+individuals = unique(db$individual)
 
 ### loop
 for(id in individuals){
   ## filter by id
   my_data1 = db %>% 
-    filter(Individual == id)
+    filter(individual == id)
     ## how many leaves?
-    leaves = unique(my_data1$Leaf)
-  for(leaf in leaves){
+    leaves = unique(my_data1$leaf)
+  for(leaf_num in leaves){
     ## filter by leaf
     my_data2 = my_data1 %>% 
-      filter(Leaf == leaf) %>% 
-      mutate(area = mean(`Area.moist_cm2`, na.rm = T))
+      filter(leaf == leaf_num) %>% 
+      mutate(area = mean(`area_moist_cm2`, na.rm = T))
     ## set name
-    file_name = paste(sp,id,leaf, sep="_")
+    file_name = paste(sp,id,leaf_num, sep="_")
     ## gmin analyses
     gmin_routine(data = my_data2, file_name =  file_name)
     

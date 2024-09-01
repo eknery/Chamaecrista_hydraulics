@@ -1,4 +1,4 @@
-Specie;Individual;Leaf;measure;data;hour;time_minutes;weight_g;temp_C;umid_%;Area moist_cm2;Area dry_cm2;Atmospheric_pressure
+species;individual;leaf;measure;data;hour;time_minutes;weight_g;temp_C;humid_perc;area_moist_cm2;area_dry_cm2;atmospheric_pressure
 C_distishoclata;1;1;2;01_mai_2024;09:46:00;0;0,0186;23,1;69;0,975;0,975;87,23
 C_distishoclata;1;1;3;01_mai_2024;10:10:00;24;0,0184;23,4;69;;;
 C_distishoclata;1;1;4;01_mai_2024;10:35:00;49;0,0182;23,8;67;;;

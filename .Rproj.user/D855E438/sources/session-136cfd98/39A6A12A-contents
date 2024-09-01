@@ -1,11 +1,11 @@
 
 gmin_routine = function(data, file_name){
-  
+ 
   ### major parameters
   t = data[["time_minutes"]]
   w =  data[["weight_g"]]
   temp = data[["temp_C"]]
-  humid = data[["umid_."]]
+  humid = data[["humid_perc"]]
   area = data[["area"]]
   atm = data[["atm"]]
   
@@ -38,18 +38,18 @@ gmin_routine = function(data, file_name){
   ### linear model
   lm_fit = lm(w ~ t)
   lm_test = summary(lm_fit)
-  intercept = lm_test$coefficients[[1]]
-  slope = lm_test$coefficients[[2]]
+  intercept = round(lm_test$coefficients[[1]], 3)
+  slope = round(lm_test$coefficients[[2]], 5)
   
   ### annotations
   r2_txt = round(lm_test$adj.r.squared, 5)
   intercept_txt = round(intercept, 3)
   if(slope > 0){
-    slope_txt = paste0("+",round (slope, 3) )
+    slope_txt = paste0("+",slope)
   }else{
-    slope_txt = round(slope, 3)
+    slope_txt = slope
   }
-  lm_formula = paste0("y = ", intercept_txt, slope_txt,"x" )
+  lm_formula = paste0("y = ", intercept_txt, slope_txt,"x")
   
   ### annotation coords
   x = t[length(t)-1 ]
