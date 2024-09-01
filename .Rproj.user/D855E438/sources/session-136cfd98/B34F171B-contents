@@ -1,0 +1,36 @@
+### libraries
+if (!require("tidyverse")) install.packages("tidyverse"); require("tidyverse")
+if (!require("ggplot2")) install.packages("ggplot2"); library("ggplot2")
+if (!require("ggpubr")) install.packages("ggpubr"); library("ggpubr")
+
+### my functions
+source("0_functions/function_vpsat.R")
+source("0_functions/function_mfvpd.R")
+source("0_functions/function_gmin.R")
+source("0_functions/function_gmin_routine.R")
+
+### load data
+data = read.table("1_data/Gmin_C_distishoclata_27_abr_2024.csv",
+                  h=T, 
+                  sep= ";"
+                  )
+
+## sp name
+sp = unique(data$Specie)
+individuals = unique(data$Individual)
+leaves = unique(data$Leaf)
+
+
+for(id in individuals){
+  my_data = data %>% 
+    filter(Individual == id)
+  for(leaf in leaves){
+    my_data = data %>% 
+      filter(Leaf == leaf)
+    ### set name
+    file_name = paste(sp,id,leaf, sep="_")
+    ### gmin analyses
+    gmin_routine(data = my_data, file_name =  file_name)
+    
+  }
+}
