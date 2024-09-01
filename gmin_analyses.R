@@ -11,7 +11,7 @@ source("0_functions/function_gmin.R")
 source("0_functions/function_gmin_routine.R")
 
 ### load data
-db = read.table("1_data/Gmin_C_distishoclata_27_abr_2024.csv",
+db = read.table("1_data/Gmin_C_brachystachia_01_mai_2024.csv",
                   h=T, 
                   sep= ";",
                   dec = ","
