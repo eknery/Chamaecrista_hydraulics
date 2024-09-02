@@ -1,13 +1,24 @@
 
 gmin_routine = function(data, file_name){
- 
+
   ### major parameters
   t = data[["time_minutes"]]
   w =  data[["weight_g"]]
   temp = data[["temp_C"]]
   humid = data[["humid_perc"]]
-  area = data[["area"]]
   atm = data[["atm"]]
+  
+  ### checking available variables of area
+  sum_dry = sum(data[["area_dry_cm2"]], na.rm = T)
+  if(is.na(sum_dry)){
+    data = data %>% 
+      mutate(area = mean(`area_moist_cm2`, na.rm = T))
+  } else {
+    data = data %>% 
+      mutate(area = mean(`area_dry_cm2`, na.rm = T))
+  }
+  ### setting area values
+  area = data[["area"]]
   
   ### calcularte vpsat
   vpsat_val = vpsat(temp = temp)
