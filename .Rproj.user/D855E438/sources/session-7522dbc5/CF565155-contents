@@ -11,20 +11,27 @@ source("0_functions/function_gmin.R")
 source("0_functions/function_gmin_routine.R")
 
 ### load data
-db = read.table("1_data/leaf_gmin_C_latistipula_02_set_2024.csv",
+db = read.table("1_data/leaf_gmin_C_nictitans_24_mar_2024.csv",
                   h=T, 
                   sep= ";",
                   dec = ","
                   )
 
-### processing common info
-db$atm = mean(db[["atmospheric_pressure"]], na.rm = T)
+
+write.table(db,"leaf_gmin_C_distishoclata_27_abr_2024.csv",
+            sep=",",
+            dec=".",
+            row.names = F,
+            quote=F
+            )
+
+############################### GMIN BY INDIVIDUAL ############################
 
 ## sp name
 sp = unique(db$specie)
 individuals = unique(db$individual)
 
-### loop
+### loop for each leaf 
 for(id in individuals){
   ## filter by id
   my_data1 = db %>% 
@@ -43,5 +50,7 @@ for(id in individuals){
   }
 }
 
+############################## GMIN BY SPECIES ################################
 
-
+all_results = list.files(path=paste0(getwd(), "/2_gmin_results"),
+                         pattern = ".csv")

@@ -120,6 +120,8 @@ gmin_routine = function(data, file_name){
   print(wt_plot)
   dev.off()
   
+  ### print
+  print(paste0("Gmin analyses done: ", file_name) )
 }
 
 

@@ -17,14 +17,13 @@ db = read.table("1_data/leaf_gmin_C_latistipula_02_set_2024.csv",
                   dec = ","
                   )
 
-### processing common info
-db$atm = mean(db[["atmospheric_pressure"]], na.rm = T)
+############################### GMIN BY INDIVIDUAL ############################
 
 ## sp name
 sp = unique(db$specie)
 individuals = unique(db$individual)
 
-### loop
+### loop for each leaf 
 for(id in individuals){
   ## filter by id
   my_data1 = db %>% 
@@ -43,5 +42,7 @@ for(id in individuals){
   }
 }
 
+############################## GMIN BY SPECIES ################################
 
-
+all_results = list.files(path=paste0(getwd(), "/2_gmin_results"),
+                         pattern = ".csv")
