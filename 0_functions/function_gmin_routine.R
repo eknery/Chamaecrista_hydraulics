@@ -1,6 +1,6 @@
 
 gmin_routine = function(data, file_name){
-
+  
   ### major parameters
   t = data[["time_minutes"]]
   w =  data[["weight_g"]]
@@ -9,13 +9,13 @@ gmin_routine = function(data, file_name){
   atm = data[["atmospheric_pressure"]]
   
   ### checking available variables of area
-  sum_dry = sum(data[["area_dry_cm2"]], na.rm = T)
-  if(!is.na(sum_dry)){
-    data = data %>% 
-      mutate(area = mean(`area_dry_cm2`, na.rm = T))
-  } else {
+  sum_moist = sum(data[["area_moist_cm2"]], na.rm = T)
+  if(sum_moist != 0 ){
     data = data %>% 
       mutate(area = mean(`area_moist_cm2`, na.rm = T))
+  } else {
+    data = data %>% 
+      mutate(area = mean(`area_dry_cm2`, na.rm = T))
   }
   ### setting area values
   area = data[["area"]]
