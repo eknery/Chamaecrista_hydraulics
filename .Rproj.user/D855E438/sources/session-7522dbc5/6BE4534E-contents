@@ -1,0 +1,14 @@
+### choose data 
+my_path = "1_data/leaf_gmin_data_raw/leaf_gmin_C_flexuosa_31_aug_2024.csv"
+
+### load data
+db = read.table(my_path,
+                h=T, 
+                sep= ";",
+                dec = ","
+)
+
+write.table(db,
+            "leaf_gmin_C_flexuosa_31_aug_2024.csv",
+            sep = ",",
+            dec = ".", quote = F, row.names = F)

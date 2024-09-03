@@ -12,7 +12,7 @@ source("0_functions/function_gmin.R")
 source("0_functions/function_gmin_routine.R")
 
 ### choose data 
-my_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_nictitans_24_mar_2024.csv"
+my_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_flexuosa_31_aug_2024.csv"
 
 ### load data
 db = read.table(my_path,
@@ -162,7 +162,7 @@ write.table(all_stats_df,
 tiff(paste0(export_dir,".tiff"), 
      units="cm", 
      width=14, 
-     height=13, 
+     height=12, 
      res=600)
-print(wt_plot)
+print(gmin_plot)
 dev.off()
