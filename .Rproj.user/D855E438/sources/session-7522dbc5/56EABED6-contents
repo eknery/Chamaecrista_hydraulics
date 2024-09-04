@@ -1,0 +1,19 @@
+### choose data 
+path = "leaf_gmin_C_flexuosa_03_set_2024.csv"
+
+### load data
+data = read.table(path,
+                h=T, 
+                sep= ";",
+                dec = "."
+)
+
+data$weight_g = (data$weight_leafbag_g - data$weight_bag_g) /1000
+
+### export tabble
+write.table(data, 
+            "clean_leaf_gmin_C_flexuosa_03_set_2024.csv",
+            sep = ",",
+            dec = ".",
+            row.names = F
+)

@@ -12,10 +12,10 @@ source("0_functions/function_gmin.R")
 source("0_functions/function_gmin_routine.R")
 
 ### choose data 
-my_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_flexuosa_31_aug_2024.csv"
+data_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_flexuosa_31_aug_2024.csv"
 
 ### load data
-db = read.table(my_path,
+db = read.table(data_path,
                 h=T, 
                 sep= ",",
                 dec = "."
@@ -69,8 +69,9 @@ data_files = all_files[grepl(dtype, all_files)]
 
 ### species to consider
 all_species = c("C_brachystachia",
-                "C_distishoclata",
                 "C_latistipula", 
+                "C_distishoclata",
+                "C_flexuosa",
                 "C_nictitans"
                 )
 
@@ -155,13 +156,14 @@ export_dir = paste0("2_gmin_results/0_",dtype,"_gmin_species")
 write.table(all_stats_df, 
             paste0(export_dir, ".csv"),
             sep = ",",
-            dec = "."
+            dec = ".",
+            row.names = F
             )
 
 ## export plot
 tiff(paste0(export_dir,".tiff"), 
      units="cm", 
-     width=14, 
+     width=16, 
      height=12, 
      res=600)
 print(gmin_plot)

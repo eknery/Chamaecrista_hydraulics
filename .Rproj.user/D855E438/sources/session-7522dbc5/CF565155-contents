@@ -12,10 +12,10 @@ source("0_functions/function_gmin.R")
 source("0_functions/function_gmin_routine.R")
 
 ### choose data 
-my_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_flexuosa_31_aug_2024.csv"
+data_path = "1_data/leaf_gmin_data_clean/leaf_gmin_C_flexuosa_31_aug_2024.csv"
 
 ### load data
-db = read.table(my_path,
+db = read.table(data_path,
                 h=T, 
                 sep= ",",
                 dec = "."
